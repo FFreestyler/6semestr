@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">lab5</string>
+    <string name="clear">Clear</string>
+    <string name="add">Add</string>
+    <string name="name">Name</string>
+    <string name="weight">Weight</string>
+    <string name="growth">Growth</string>
+    <string name="age">Age</string>
+</resources>
