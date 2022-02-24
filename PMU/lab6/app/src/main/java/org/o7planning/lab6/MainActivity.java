@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         metals.put("Серебро", cols.get(2).text());
         metals.put("Платина", cols.get(3).text());
         metals.put("Палладий", cols.get(4).text());
-
+        System.out.println("kek");
         for(Map.Entry<String, String> out : metals.entrySet()) {
             System.out.println(out.getKey() + ": " + out.getValue());
         }
