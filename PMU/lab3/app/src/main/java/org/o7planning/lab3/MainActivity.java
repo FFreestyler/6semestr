@@ -12,7 +12,7 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
     private GameClass gameClass;
     private Handler handler;
-    //private final static int interval 1000 / 60;
+    private final static int interval = 1000 / 60;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-        }, 0, 1000 / 60);
+        }, 0, interval);
     }
 }

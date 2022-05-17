@@ -71,7 +71,7 @@ public class GameClass extends View {
         } else {
             timer = System.currentTimeMillis();
             isStop = true;
-            str = "Lose!:(";
+            str = "Lose!";
             style = statusGameLose;
         }
     }

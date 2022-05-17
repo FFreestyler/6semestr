@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public void fillDataBase() {
         SQLiteDatabase db = openOrCreateDatabase("s.db", MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS stud (name TEXT, weight INTEGER, growth INTEGER, age INTEGER);");
-        db.execSQL("DELETE FROM stud");
+        //db.execSQL("DELETE FROM stud");
         ArrayList<String> nameArr = new ArrayList<>();
         nameArr.add("Name1");
         nameArr.add("Name2");
@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
     public void printDataBase() {
         SQLiteDatabase db = openOrCreateDatabase("s.db", MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS stud (name TEXT, weight INTEGER, growth INTEGER, age INTEGER);");
-        Cursor query = db.rawQuery("SELECT * FROM stud;", null);
+        table.removeAllViews();
+        Cursor query = db.rawQuery("SELECT * FROM stud ORDER BY age;", null);
 
         while(query.moveToNext()) {
             TextView name = new TextView(this);

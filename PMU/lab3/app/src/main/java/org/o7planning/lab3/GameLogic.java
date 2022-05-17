@@ -2,6 +2,7 @@ package org.o7planning.lab3;
 
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ class GameLogic {
 
     private void createUnit() {
         Unit unit = new Unit();
-        switch(ThreadLocalRandom.current().nextInt(0, 2)) {
+        switch(ThreadLocalRandom.current().nextInt(0, 3)) {
             case 0:
                 unit.unitTexture = BitmapFactory.decodeResource(view.getResources(), R.drawable.bugorange);
                 break;
@@ -42,7 +43,7 @@ class GameLogic {
                 unit.unitTexture = BitmapFactory.decodeResource(view.getResources(), R.drawable.bugcyan);
         }
         unitList.add(unit);
-        unit.matrix.setRotate(0, unit.unitTexture.getWidth(), unit.unitTexture.getHeight());
+        unit.matrix.setRotate(0, unit.unitTexture.getWidth() / 10, unit.unitTexture.getHeight() / 10);
         unit.matrix.reset();
         unit.p = 0;
         unit.isRun = false;
@@ -77,8 +78,8 @@ class GameLogic {
         if(!unit.isRun) {
             unit.destX = (float) Math.random() * view.getWidth();
             unit.destY = (float) Math.random() * view.getHeight();
-            unit.stepX = (unit.destX - unit.x) / 57;
-            unit.stepY = (unit.destY - unit.y) / 57;
+            unit.stepX = (unit.destX - unit.x) / 50;
+            unit.stepY = (unit.destY - unit.y) / 50;
             Integer tp;
             if (unit.x <= unit.destX && unit.y >= unit.destY)
                 tp = (int) Math.floor(Math.toDegrees(Math.atan(Math.abs(unit.x - unit.destX) / Math.abs(unit.y - unit.destY))));
@@ -103,10 +104,15 @@ class GameLogic {
 
     void touchEvent(float x, float y) {
         boolean touch = false;
-        Integer hitCounter = 0;
         for(Unit unit : unitList) {
-            if(Math.abs(unit.x - x + 60) < 140
-                    && Math.abs(unit.y - y + 60) < 150) {
+            if(Math.abs(unit.x - x + 140) < 144
+                    && Math.abs(unit.y - y + 140) < 156) {
+                //MediaPlayer hit = MediaPlayer.create(view.getContext(), R.raw.hit);
+                //hit.setOnCompletionListener(mediaPlayer -> mediaPlayer.release());
+                //hit.setOnPreparedListener(mediaPlayer -> mediaPlayer.start());
+                MediaPlayer Win = MediaPlayer.create(view.getContext(), R.raw.hit);
+                Win.setOnCompletionListener(mediaPlayer -> mediaPlayer.release());
+                Win.setOnPreparedListener(mediaPlayer -> mediaPlayer.start());
                 unit.unitNotAlive();
                 point++;
                 touch = true;
